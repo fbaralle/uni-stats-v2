@@ -119,11 +119,12 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
     if (initialPairStats.length > 0) {
       try {
         const response = await saveManyToDb(initialPairStats);
-        return console.log(
+        console.log(
           'Successfully refreshed pair values, id=',
           pairAddress,
           response
         );
+        return response;
       } catch (e) {
         throw new Error('[ERROR] Error saving to DB', e);
       }
@@ -132,42 +133,3 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
     console.log('[DB Init] Every pair has valid statistics');
   }
 };
-
-// export const feedDb = async () => {
-//   try {
-//     console.log('feeding db');
-//     const pairData = new PairHourData({
-//       hourStartUnix: 1644098400,
-//       hourlyVolumeUSD: '257726.86563225473733289498808541',
-//       snapshotId: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456694',
-//       pairId: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
-//       reserveUSD: '232982711.6579611027581994085644555',
-//     });
-
-//     const response = await pairData.saveOne();
-//     console.log(response);
-//     return response;
-//   } catch (e) {
-//     console.log('[ERROR]', e);
-//   }
-// };
-
-// feed DB with the last 48 hour data for a determined pair
-// export const saveManyToDb = async (entries) => {
-//   try {
-//     console.log('feeding db many');
-//     // const pairData = entries.map(
-//     //   ({ id, pair, ...props }) =>
-//     //     new PairHourData({
-//     //       snapshotId: id,
-//     //       pairId: pair.id,
-//     //       ...props,
-//     //     })
-//     // );
-//     const response = await PairHourData.saveMany(pairData);
-
-//     return response;
-//   } catch (e) {
-//     console.log('[ERROR]', e);
-//   }
-// };
