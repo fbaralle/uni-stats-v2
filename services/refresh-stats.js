@@ -110,18 +110,12 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
     );
     const initialPairStats = await getPairStats(pairAddress, hoursAmount);
 
-    console.log(
-      'initialPairStats=',
-      initialPairStats.length,
-      'items collected'
-    );
-
     if (initialPairStats.length > 0) {
       try {
         const response = await saveManyToDb(initialPairStats);
         console.log(
-          'Successfully refreshed pair values, id=',
-          pairAddress,
+          `Successfully refreshed pair values, id=${pairAddress}`,
+          `Added data from the last ${hoursAmount} hours`,
           response
         );
         return response;
@@ -130,6 +124,6 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
       }
     }
   } else {
-    console.log('[DB Init] Every pair has valid statistics');
+    console.log('[DB Init] Every pair has valid/updated statistics');
   }
 };
