@@ -1,0 +1,6 @@
+# testing
+/coverage
+
+# next.js
+/packages/**/.next/
+/packages/**/out/

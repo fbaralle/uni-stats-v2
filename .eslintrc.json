@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["airbnb", "plugin:jest/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest"],
+  "settings": {
+    "import/extensions": [".js", ".json", ".css", ".csv"],
+    "import/ignore": ["node_modules"],
+    "import/core-modules": ["enzyme", "test-utils", "jest-next-dynamic"]
+  },
+  "rules": {
+    // Prevent using lodash in a way that would break tree shaking
+    "no-restricted-imports": [
+      "error",
+      {
+        "name": "lodash",
+        "message": "Please use `import <package> from 'lodash/<package>';` instead"
+      }
+    ],
+    // Current version of react (17.0.1) support omitting this
+    "react/react-in-jsx-scope": "off",
+    // Using .js to jsx containing files
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    // Spreading can be usefull, just use it with care :)
+    "react/jsx-props-no-spreading": "off",
+    // Allow devDependencies to be used on tests files
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["jestSetup.js", "**/*.test.js"] }
+    ],
+    // Has conflicts with prettier
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "ignore"
+      }
+    ]
+  }
+}

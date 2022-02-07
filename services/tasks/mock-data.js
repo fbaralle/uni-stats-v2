@@ -1,0 +1,137 @@
+export const MOCK_DATA = [
+  {
+    hourStartUnix: 1644102000,
+    hourlyVolumeUSD: '227860.5932979179915665608484082933',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456695',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232834842.3818185144138825415021936',
+  },
+  {
+    hourStartUnix: 1644098400,
+    hourlyVolumeUSD: '257726.86563225473733289498808541',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456694',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232982711.6579611027581994085644555',
+  },
+  {
+    hourStartUnix: 1644094800,
+    hourlyVolumeUSD: '446424.791612836377540242253006763',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456693',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232907674.8561226375016004924032527',
+  },
+  {
+    hourStartUnix: 1644091200,
+    hourlyVolumeUSD: '626290.1284179110295427906960625899',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456692',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232486714.5380802623347169475374919',
+  },
+  {
+    hourStartUnix: 1644087600,
+    hourlyVolumeUSD: '297352.4295627968470345220577035267',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456691',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232705912.9238157499659895500073022',
+  },
+  {
+    hourStartUnix: 1644084000,
+    hourlyVolumeUSD: '382731.5356980658187328879652617838',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456690',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232644376.9480374599116419060473407',
+  },
+  {
+    hourStartUnix: 1644080400,
+    hourlyVolumeUSD: '2172262.616538122817633490711511545',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456689',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232582910.9272109774410048020093286',
+  },
+  {
+    hourStartUnix: 1644076800,
+    hourlyVolumeUSD: '985932.6119776170826558407652901861',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456688',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232534087.6910509439191723173952034',
+  },
+  {
+    hourStartUnix: 1644073200,
+    hourlyVolumeUSD: '922312.9755850749312167856385247299',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456687',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '234007173.9726182994359061822121609',
+  },
+  {
+    hourStartUnix: 1644069600,
+    hourlyVolumeUSD: '539452.0092476071382734616334181038',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456686',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '233259557.1637227860112166658829416',
+  },
+  {
+    hourStartUnix: 1644066000,
+    hourlyVolumeUSD: '461334.7324858422614722718265434419',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456685',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232841552.1424439327095524003452836',
+  },
+  {
+    hourStartUnix: 1644062400,
+    hourlyVolumeUSD: '436565.5280009316721558862568239532',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456684',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232552724.7526171674942213681465699',
+  },
+  {
+    hourStartUnix: 1644058800,
+    hourlyVolumeUSD: '515778.1208730782600997568794829727',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456683',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232492508.3007577052801360272001557',
+  },
+  {
+    hourStartUnix: 1644055200,
+    hourlyVolumeUSD: '350720.7255130727691471517736120144',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456682',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232802759.9842089878416087058605788',
+  },
+  {
+    hourStartUnix: 1644051600,
+    hourlyVolumeUSD: '841602.8287899500266373048355027101',
+    id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc-456681',
+    pair: {
+      id: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+    },
+    reserveUSD: '232948980.4359653130398857669341625',
+  },
+];

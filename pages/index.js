@@ -1,7 +1,21 @@
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import { useEffect } from 'react';
+import Head from 'next/head';
+// import { getPairHourDatas, getPairs } from 'services';
+import {
+  // checkPairLastSnapshot,
+  checkAndRefreshStats,
+} from 'services/refresh-stats';
 
-export default function Home({ isConnected }) {
+const Home = ({
+  isConnected = true,
+  pairs,
+  pairHourData,
+  collections,
+  pairStoredData,
+}) => {
+  console.log(pairs);
+  console.log('Collections', collections);
+  console.log('pairStoredData=', pairStoredData);
   return (
     <div className="container">
       <Head>
@@ -219,24 +233,55 @@ export default function Home({ isConnected }) {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
+  let pairs = {};
+  let pairHourData = {};
+  let isConnected;
+  let collections;
+  let pairStoredData = {};
+
   try {
-    // client.db() will be the default database passed in the MONGODB_URI
-    // You can change the database by calling the client.db() function and specifying a database like:
-    // const db = client.db("myDatabase");
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-    await clientPromise
-    return {
-      props: { isConnected: true },
-    }
+    await checkAndRefreshStats();
   } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
+    console.log('Failed initialisation', e);
   }
+
+  // try {
+  //   pairs = await getPairs();
+  // } catch (e) {
+  //   console.log('Unable to get pairs data');
+  // }
+
+  // try {
+  //   pairStoredData = await checkPairLastSnapshot(
+  //     '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
+  //   );
+
+  //   if (pairStoredData.pairLastStats.length > 0) {
+  //     pairStoredData.pairLastStats = pairStoredData.pairLastStats.map(
+  //       (item) => {
+  //         return {
+  //           ...item,
+  //           hourStartUnix: new Date(item.hourStartUnix * 1000).toLocaleString(),
+  //         };
+  //       }
+  //     );
+  //   }
+  // } catch (e) {
+  //   console.log('Unable to get pairs stats', e);
+  // }
+
+  return {
+    props: {
+      pairs,
+      pairHourData: pairHourData ?? null,
+      collections: collections ?? 'No collections created',
+      pairStoredData: pairStoredData ?? null,
+    },
+  };
 }
+
+export default Home;
