@@ -1,5 +1,5 @@
-import client from 'services/graphql/apollo-client';
-import GET_PAIRS from 'services/graphql/queries/pairs';
+import client from 'server/graphql/apollo-client';
+import GET_PAIRS from 'server/graphql/queries/pairs';
 
 const DEFAULT_PAIRS = [
   '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',

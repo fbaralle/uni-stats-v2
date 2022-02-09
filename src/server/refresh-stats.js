@@ -1,5 +1,5 @@
-import { getPairHourDatas } from 'services';
-import PairHourData from 'services/database/models/pair-hour-data';
+import { getPairHourDatas } from 'server';
+import PairHourData from 'server/database/models/pair-hour-data';
 import {
   getCurrentUnixTimestamp,
   convertUnixToMs,
@@ -100,6 +100,9 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
   if (lastStats?.pendingInitialFeed || lastStats?.isLastStatExpired) {
     const { isLastStatExpired, pendingInitialFeed } = lastStats;
 
+    // Init rule
+    // Fetches stats from the las 48 hours if db is empty.
+    // If last saved record is older than an hour, fetches last hour
     const hoursAmount =
       isLastStatExpired && !pendingInitialFeed ? 1 : INITIAL_FEED_HOURS_AMOUNT;
 
@@ -127,3 +130,6 @@ export const checkAndRefreshStats = async (pairAddress = DEFAULT_PAIRS[0]) => {
     console.log('[DB Init] Every pair has valid/updated statistics');
   }
 };
+
+// To Do: create a Node Cron process that refreshes stats
+// every 20 minutes and stores the event result in a new collection

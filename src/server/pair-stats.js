@@ -1,5 +1,5 @@
-import client from 'services/graphql/apollo-client';
-import GET_PAIR_HOUR_DATAS from 'services/graphql/queries/pair-stats';
+import client from 'server/graphql/apollo-client';
+import GET_PAIR_HOUR_DATAS from 'server/graphql/queries/pair-stats';
 
 const getUnixTimestamp = () => Math.round(new Date().getTime() / 1000);
 

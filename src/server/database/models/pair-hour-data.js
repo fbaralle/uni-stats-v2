@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
-import dbClient, { getDb } from 'services/database/mongodb-client';
+import dbClient, { getDb } from 'server/database/mongodb-client';
+import { getFeesNumber } from 'utils/uniswap';
 
 export default class PairHourData {
   constructor({
@@ -9,11 +10,11 @@ export default class PairHourData {
     reserveUSD,
     hourlyVolumeUSD,
   }) {
-    this._id = new ObjectId();
-    this.snapshotId = snapshotId;
+    this._id = snapshotId;
     this.pairId = pairId;
     this.hourStartUnix = hourStartUnix;
     this.reserveUSD = reserveUSD;
+    this.feesUSD = hourlyVolumeUSD && getFeesNumber(hourlyVolumeUSD);
     this.hourlyVolumeUSD = hourlyVolumeUSD;
   }
 
