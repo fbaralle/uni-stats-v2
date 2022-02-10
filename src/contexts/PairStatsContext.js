@@ -40,15 +40,15 @@ const getPairInfo = async ({ pair, dispatch }) => {
 const getPairDailyStats = async ({ pairAddress, dispatch }) => {
   dispatch({ type: UPDATING_PAIR_DAILY_STATS });
   try {
-    // const { pairHourDatas } = await getPairHourDatas({
-    //   pairAddress,
-    //   hoursFromNow: DAY_HOURS * 2,
-    // });
+    const { pairHourDatas } = await getPairHourDatas({
+      pairAddress,
+      hoursFromNow: DAY_HOURS * 2,
+    });
     // console.log(pairHourDatas);
     // const pairData = pairs.length > 0 ? pairs[0] : {};
     dispatch({
       type: UPDATE_PAIR_DAILY_STATS,
-      data: pairHourDatasMock,
+      data: pairHourDatas,
     });
   } catch (e) {
     console.log('[ERROR] getPairInfo', e);

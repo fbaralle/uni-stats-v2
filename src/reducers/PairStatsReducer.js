@@ -85,6 +85,7 @@ const parsePairInfo = (pairData) => {
 };
 
 const parseDailyStats = (dailyStats, state) => {
+  // implement day filter
   const thisDay = dailyStats.slice(0, 23);
   const lastDay = dailyStats.slice(24, 47);
   const thisDayVolume = getPeriodVolume(thisDay);

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import PairStatsContext from 'contexts/PairStatsContext';
 import { Select, HStack, VStack, Spinner, Flex, Text } from '@chakra-ui/react';
-import { DEFAULT_PAIR_OPTS } from 'server/default-pairs';
+import { DEFAULT_PAIRS } from 'constants';
 
 const PairSelector = () => {
   const [
@@ -26,7 +26,7 @@ const PairSelector = () => {
           defaultValue={selectedPair || ''}
           onChange={(e) => handleUpdateSelectedPair(e.target.value)}
         >
-          {DEFAULT_PAIR_OPTS.map(({ pairId, label }) => {
+          {DEFAULT_PAIRS.map(({ pairId, label }) => {
             return (
               <option value={pairId}>{`${label} - ${pairId.slice(
                 0,
