@@ -6,20 +6,24 @@ const GET_PAIRS = gql`
       id
       token0Price
       token1Price
-      volumeUSD
       reserve0
       reserve1
       reserveUSD
+      volumeUSD
+      totalSupply
+      createdAtTimestamp
       token0 {
         symbol
         name
         decimals
+        derivedETH
         totalLiquidity
       }
       token1 {
         symbol
         name
         decimals
+        derivedETH
         totalLiquidity
       }
     }

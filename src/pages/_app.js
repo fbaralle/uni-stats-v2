@@ -1,11 +1,13 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import Header from 'components/Header';
 import theme from 'components/theme';
+import { PairStatsProvider } from 'contexts/PairStatsContext';
 
 const App = ({ Component, pageProps }) => {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <PairStatsProvider value={{}}>
+        <Component {...pageProps} />
+      </PairStatsProvider>
     </ChakraProvider>
   );
 };

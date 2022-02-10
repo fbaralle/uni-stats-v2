@@ -1,8 +1,15 @@
-const handler = async (req, res) => {
-  const { data, status } = getPairs();
+// import { getPairs } from 'server/pairs';
 
-  res.status(status);
-  res.json(data);
-};
+// // const handler = async (req, res) => {
 
-export default handler;
+// try {
+//   const { data } = await getPairs();
+//   res.status(200);
+//   res.json(data);
+// } catch (e) {
+//   res.json(504);
+//   console.log('[ERROR] /api/pairs', e);
+// }
+// // };
+
+// // export default handler;
