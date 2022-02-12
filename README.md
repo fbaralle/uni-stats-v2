@@ -4,7 +4,6 @@ This app uses [The Graph service](https://thegraph.com/hosted-service/subgraph/u
 
 ![Screen Shot 2022-02-11 at 23 20 54](https://user-images.githubusercontent.com/62451142/153692795-a46248aa-4eb4-443f-9826-21fbbe4c7337.png)
 
-
 ## Install dependencies
 
 ```bash
@@ -18,10 +17,10 @@ yarn install // yarn
 Copy the `env.local.example` file in this directory to `.env` (in this case is not ignored by Git, on purpose):
 
 ```bash
-cp .env.local.example .env.local
+cp .env.local.example .env
 ```
 
-Set each variable on `.env.local`:
+Set each variable on `.env`:
 
 ## Run in dev mode
 
