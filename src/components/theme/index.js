@@ -142,7 +142,7 @@ const theme = extendTheme({
       lightHover: '#000',
     },
     icon: {
-      brand: '#4A90E2',
+      brand: '#2E71F0',
       inverted: '#fff',
       muted: '#757575',
       primary: '#333333',
@@ -150,7 +150,7 @@ const theme = extendTheme({
     },
     border: {
       active: '#000',
-      brand: '#4A90E2',
+      brand: '#2E71F0',
       decorative: '#ccc',
       disabled: 'rgba(204, 204, 204, 0.6)',
       error: '#d0021a',

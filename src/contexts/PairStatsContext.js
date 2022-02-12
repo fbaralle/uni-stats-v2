@@ -9,8 +9,8 @@ import PairStatsReducer, {
   actions,
   defaultPairStats,
 } from 'reducers/PairStatsReducer';
-import { pairHourDatasMock } from 'server/mock-hour-stats';
-import { getPairHourDatas } from 'server/pair-stats';
+import { mockDayDatas, pairHourDatasMock } from 'server/mock-hour-stats';
+import { getPairDayDatas, getPairHourDatas } from 'server/pair-stats';
 import { getPairs } from 'server/pairs';
 
 const {
@@ -44,12 +44,45 @@ const getPairDailyStats = async ({ pairAddress, dispatch }) => {
       pairAddress,
       hoursFromNow: DAY_HOURS * 2,
     });
-    // console.log(pairHourDatas);
-    // const pairData = pairs.length > 0 ? pairs[0] : {};
     dispatch({
       type: UPDATE_PAIR_DAILY_STATS,
       data: pairHourDatas,
     });
+  } catch (e) {
+    console.log('[ERROR] getPairInfo', e);
+  }
+};
+
+const getChartStats = async ({
+  pairAddress,
+  hoursFromNow,
+  period,
+  dispatch,
+}) => {
+  dispatch({ type: UPDATING_CHART_STATS });
+  try {
+    if (period === 'day' || period === 'week') {
+      const { pairHourDatas } = await getPairHourDatas({
+        pairAddress,
+        hoursFromNow: hoursFromNow,
+      });
+
+      dispatch({
+        type: UPDATE_CHART_STATS,
+        data: { chartData: pairHourDatas, snapshotPeriod: 'hour' },
+      });
+    } else {
+      const { pairDayDatas } = await getPairDayDatas({
+        pairAddress,
+        daysFromNow: parseInt(hoursFromNow / 24),
+        hoursFromNow: hoursFromNow,
+      });
+
+      dispatch({
+        type: UPDATE_CHART_STATS,
+        data: { chartData: pairDayDatas, snapshotPeriod: 'day' },
+      });
+    }
   } catch (e) {
     console.log('[ERROR] getPairInfo', e);
   }
@@ -69,16 +102,40 @@ const PairStatsProvider = ({ children, value: initialValue }) => {
       dispatch({ type: UPDATE_PAIR_DAILY_STATS, data: pairInfo }),
     updateSelectedPair: (pairId) =>
       dispatch({ type: UPDATE_SELECTED_PAIR, data: { selectedPair: pairId } }),
+    updateChartDateRange: (range) =>
+      dispatch({
+        type: UPDATE_CHART_DATE_RANGE,
+        data: { chartDateRange: range },
+      }),
   });
 
   useEffect(() => {
     if (state.selectedPair) {
       getPairInfo({ pair: state.selectedPair, dispatch });
       getPairDailyStats({ pairAddress: state.selectedPair, dispatch });
+
+      if (state.chartDateRange.hoursFromNow) {
+        getChartStats({
+          pairAddress: state.selectedPair,
+          hoursFromNow: state.chartDateRange.hoursFromNow,
+          period: state.chartDateRange.selectedPeriod,
+          dispatch,
+        });
+      }
     }
   }, [state.selectedPair]);
 
-  console.log('SELECTED PAIR=', state.selectedPair);
+  useEffect(() => {
+    if (state.selectedPair && state.chartDateRange.hoursFromNow) {
+      getChartStats({
+        pairAddress: state.selectedPair,
+        hoursFromNow: state.chartDateRange.hoursFromNow,
+        period: state.chartDateRange.selectedPeriod,
+        dispatch,
+      });
+    }
+  }, [state.selectedPair, state.chartDateRange]);
+
   return (
     <PairStatsContext.Provider value={[state, contextActions.current]}>
       {children}

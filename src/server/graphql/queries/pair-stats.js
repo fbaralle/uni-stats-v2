@@ -4,6 +4,7 @@ const GET_PAIR_HOUR_DATAS = gql`
   query PairHourDatas(
     $hourCount: Int!
     $nowUnixTimestamp: Int!
+    $startUnixTimestamp: Int!
     $pairAddress: ID!
     $orderBy: String!
   ) {
@@ -11,7 +12,11 @@ const GET_PAIR_HOUR_DATAS = gql`
       first: $hourCount
       orderBy: $orderBy
       orderDirection: desc
-      where: { pair: $pairAddress, hourStartUnix_lte: $nowUnixTimestamp }
+      where: {
+        pair: $pairAddress
+        hourStartUnix_lte: $nowUnixTimestamp
+        hourStartUnix_gte: $startUnixTimestamp
+      }
     ) {
       id
       pair {
@@ -29,6 +34,7 @@ export const GET_PAIR_DAY_DATAS = gql`
   query PairDayDatas(
     $dayCount: Int!
     $nowUnixTimestamp: Int!
+    $startUnixTimestamp: Int!
     $pairAddress: ID!
     $orderBy: String!
   ) {
@@ -36,12 +42,17 @@ export const GET_PAIR_DAY_DATAS = gql`
       first: $dayCount
       orderBy: $orderBy
       orderDirection: desc
-      where: { pair: $pairAddress, date_lte: $nowUnixTimestamp }
+      where: {
+        pairAddress: $pairAddress
+        date_lte: $nowUnixTimestamp
+        date_gte: $startUnixTimestamp
+      }
     ) {
       id
       pairAddress
       reserveUSD
       dailyVolumeUSD
+      date
     }
   }
 `;

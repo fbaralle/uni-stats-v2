@@ -1,13 +1,24 @@
-import { UNISWAP_V2_UNITARY_FEE } from 'constants';
+import {
+  UNISWAP_V2_UNITARY_FEE,
+  YEAR_IN_DAYS,
+  YEAR_IN_HOURS,
+} from 'constants/index';
 
 export const getFeesNumber = (volumeUSD) =>
   Number.parseFloat(volumeUSD) * UNISWAP_V2_UNITARY_FEE;
 
-export const getAnnualizedAprPercentNumber = (volume, reserve) => {
+export const getDayAnnualizedAPRPercentNumber = (volume, reserve) => {
   const rawAPR =
-    (Number.parseFloat(volume) * UNISWAP_V2_UNITARY_FEE * 365 * 100) /
+    (Number.parseFloat(volume) * UNISWAP_V2_UNITARY_FEE * YEAR_IN_DAYS * 100) /
     Number.parseFloat(reserve);
   return rawAPR;
+};
+
+export const getHourAnnualizedAPRPercentNumber = (volume, reserve) => {
+  const rawPeriodAPR =
+    (Number.parseFloat(volume) * UNISWAP_V2_UNITARY_FEE * YEAR_IN_HOURS * 100) /
+    Number.parseFloat(reserve);
+  return rawPeriodAPR;
 };
 
 export const formatPercent = (num) => `${parseFloat(num).toFixed(2)} %`;

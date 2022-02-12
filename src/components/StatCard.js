@@ -17,6 +17,7 @@ const StatCard = ({ label, number, changeRate, isLoading }) => {
       borderColor="border.decorative"
       borderRadius="lg"
       minWidth="260px"
+      width="100%"
       p={4}
       py={3}
       my={2}

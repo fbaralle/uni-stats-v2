@@ -2,14 +2,17 @@ import { Box, Heading, Text, Image, Flex, HStack } from '@chakra-ui/react';
 
 const Header = ({ children }) => {
   return (
-    <Flex
+    <Box
       backgroundColor="bg.primary"
       w="100%"
-      flex={1}
+      maxH="80px"
+      h="80px"
       px={6}
       py={4}
       borderBottom="1px solid"
       borderColor="border.decorative"
+      position={'sticky'}
+      top="0"
     >
       <HStack>
         <img src="/icons/crypto/uni.svg" alt="next" />
@@ -17,7 +20,7 @@ const Header = ({ children }) => {
           Uniswap v2 Stats
         </Text>
       </HStack>
-    </Flex>
+    </Box>
   );
 };
 

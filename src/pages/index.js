@@ -7,6 +7,7 @@ import Header from 'components/Header';
 
 import PairInfo from 'components/PairInfo';
 import PairDailyStats from 'components/PairDailyStats';
+import PairChart from 'components/PairChart';
 
 const Home = ({ pairs, pairStoredData }) => {
   console.log(pairs);
@@ -27,6 +28,7 @@ const Home = ({ pairs, pairStoredData }) => {
         <Layout>
           <PairInfo />
           <PairDailyStats />
+          <PairChart />
         </Layout>
       </Flex>
     </div>

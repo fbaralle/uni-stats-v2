@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import PairStatsContext from 'contexts/PairStatsContext';
 import { Select, HStack, VStack, Spinner, Flex, Text } from '@chakra-ui/react';
-import { DEFAULT_PAIRS } from 'constants';
+import { DEFAULT_PAIRS } from 'constants/index';
 
 const PairSelector = () => {
   const [
@@ -13,13 +13,14 @@ const PairSelector = () => {
     updateSelectedPair(value);
   };
   return (
-    <Flex my={3} py={2} pxx={3} backgroundColor="bg." flexDirection={'column'}>
+    <Flex mt={2} px={2} flexDirection={'column'}>
       <Text mb={2} textStyle={'body2Heavy'}>
         Pair select
       </Text>
       <HStack>
         <Select
           isDisabled={isLoadingPairInfo}
+          border="3px solid"
           placeholder={
             isLoadingPairInfo ? 'Loading pairs...' : '--- Select pair ---'
           }
@@ -28,7 +29,7 @@ const PairSelector = () => {
         >
           {DEFAULT_PAIRS.map(({ pairId, label }) => {
             return (
-              <option value={pairId}>{`${label} - ${pairId.slice(
+              <option key={pairId} value={pairId}>{`${label} - ${pairId.slice(
                 0,
                 6
               )}...${pairId.slice(-5, -1)}`}</option>

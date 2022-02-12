@@ -34,7 +34,7 @@ const PairDailyStats = () => {
       m={2}
     >
       <Text textStyle={'title2Heavy'}>Daily Stats</Text>
-      <StatGroup flexDirection={{ base: 'column', md: 'row' }}>
+      <StatGroup flexDirection={{ base: 'column', md: 'row' }} width="100%">
         <StatCard
           label="Total Liquidity"
           number={formatCurrencyUSD(totalLiquidityUSD)}

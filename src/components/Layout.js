@@ -5,11 +5,12 @@ const Layout = ({ children, style }) => {
     <Flex
       backgroundColor="bg.page"
       w="100%"
-      h="100%"
-      px={6}
+      flex={1}
+      p={6}
       flexDirection="column"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="start"
+      overflow={'scroll'}
       {...style}
     >
       {children}

@@ -1,13 +1,12 @@
 import { DEFAULT_PAIRS } from 'constants';
 import { getPairHourDatas } from 'server';
 import PairHourData from 'server/database/models/pair-hour-data';
+import { getParsedDbData, checkIsLastStatExpired } from 'utils/general';
 import {
   getCurrentUnixTimestamp,
   convertUnixToMs,
-  getParsedDbData,
-  checkIsLastStatExpired,
   getCurrentMsTimestamp,
-} from 'utils/general';
+} from 'utils/dates';
 
 // const INITIAL_FEED_HOURS_AMOUNT = 48;
 const INITIAL_FEED_HOURS_AMOUNT = 4;
