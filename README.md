@@ -2,6 +2,9 @@
 
 This app uses [The Graph service](https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v2?selected=playground) to fetch data form [Uniswap V2](https://uniswap.org/blog/uniswap-v2) DEX and displays some market performance metrics from a set of listed pairs.
 
+![Screen Shot 2022-02-11 at 23 20 54](https://user-images.githubusercontent.com/62451142/153692795-a46248aa-4eb4-443f-9826-21fbbe4c7337.png)
+
+
 ## Install dependencies
 
 ```bash
