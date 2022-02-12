@@ -119,7 +119,7 @@ const PairChart = () => {
             <Flex
               mr={5}
               pr={5}
-              borderRigth="2px solid"
+              borderRight="2px solid"
               borderColor="border.decorative"
             >
               <Text textStyle="body2Heavy">Annualized APR</Text>

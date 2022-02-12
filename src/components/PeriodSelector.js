@@ -14,13 +14,13 @@ const RadioCard = (props) => {
       <Box
         {...checkbox}
         cursor="pointer"
+        textStyle={'body1'}
+        fontSize={'sm'}
         borderWidth="1px"
         borderRadius="md"
-        boxShadow="md"
         _checked={{
           bg: 'bg.brand',
           color: 'white',
-          borderColor: 'teal.600',
         }}
         _focus={{
           boxShadow: 'outline',
@@ -34,7 +34,7 @@ const RadioCard = (props) => {
   );
 };
 
-const options = ['day', 'week', '1 month', '3 month', '6 month'];
+const options = ['day', 'week', '1 month', '3 month', '6 month'].reverse();
 
 const hoursFromNow = (period) => {
   switch (period) {

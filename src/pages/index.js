@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import { Flex } from '@chakra-ui/react';
 import { checkAndRefreshStats } from 'server/refresh-stats';
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-
 import PairInfo from 'components/PairInfo';
 import PairDailyStats from 'components/PairDailyStats';
 import PairChart from 'components/PairChart';
 
-const Home = ({ pairs, pairStoredData }) => {
-  console.log(pairs);
-  console.log('pairStoredData=', pairStoredData);
+const UniStats = ({ pairs, pairStoredData }) => {
   return (
     <div className="container">
       <Head>
@@ -38,7 +34,6 @@ const Home = ({ pairs, pairStoredData }) => {
 export async function getServerSideProps(context) {
   let pairs = {};
   let pairHourData = {};
-  let collections;
   let pairStoredData = {};
 
   try {
@@ -50,11 +45,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       pairs,
-      pairHourData: pairHourData ?? null,
-      collections: collections ?? 'No collections created',
-      pairStoredData: pairStoredData ?? null,
     },
   };
 }
 
-export default Home;
+export default UniStats;
