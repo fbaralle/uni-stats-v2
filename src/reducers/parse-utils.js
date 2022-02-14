@@ -143,3 +143,17 @@ export const parseAPRChartData = (dailyStats, period) => {
   });
   return chartHourlyData;
 };
+
+export const getAvgFilterOptions = (filter) => {
+  switch (filter) {
+    case 'day':
+    case 'week':
+      return ['24', '12', '1'];
+    case '1 month':
+    case '3 month':
+    case '6 month':
+      return ['24'];
+    default:
+      return ['24', '12', '1'];
+  }
+};

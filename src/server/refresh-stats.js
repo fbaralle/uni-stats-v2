@@ -8,8 +8,7 @@ import {
   getCurrentMsTimestamp,
 } from 'utils/dates';
 
-// const INITIAL_FEED_HOURS_AMOUNT = 48;
-const INITIAL_FEED_HOURS_AMOUNT = 4;
+const INITIAL_FEED_HOURS_AMOUNT = 48;
 
 export const checkPairLastSavedSnapshot = async (
   pairAddress = '',

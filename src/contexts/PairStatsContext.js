@@ -22,6 +22,7 @@ const {
   UPDATE_CHART_STATS,
   UPDATE_CHART_DATE_RANGE,
   UPDATE_SELECTED_PAIR,
+  UPDATE_AVG_FILTER,
 } = actions;
 
 const DAY_HOURS = 24;
@@ -72,6 +73,7 @@ const getChartStats = async ({
         data: { chartData: pairHourDatas, snapshotPeriod: 'hour' },
       });
     } else {
+      console.log('getPairDayDatas', Math.floor(hoursFromNow / 24));
       const { pairDayDatas } = await getPairDayDatas({
         pairAddress,
         daysFromNow: parseInt(hoursFromNow / 24),
@@ -107,6 +109,12 @@ const PairStatsProvider = ({ children, value: initialValue }) => {
         type: UPDATE_CHART_DATE_RANGE,
         data: { chartDateRange: range },
       }),
+    updateAverageFilter: (filter) => {
+      dispatch({
+        type: UPDATE_AVG_FILTER,
+        data: { avgFilterSelected: filter },
+      });
+    },
   });
 
   useEffect(() => {
@@ -135,6 +143,11 @@ const PairStatsProvider = ({ children, value: initialValue }) => {
       });
     }
   }, [state.selectedPair, state.chartDateRange]);
+
+  // saves last change to local state
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state));
+  }, [state]);
 
   return (
     <PairStatsContext.Provider value={[state, contextActions.current]}>

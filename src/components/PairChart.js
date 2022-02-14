@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import PeriodSelector from './PeriodSelector';
+import AverageFilter from './AvgFilter';
 
 ChartJS.register(
   CategoryScale,
@@ -25,9 +26,9 @@ ChartJS.register(
 );
 
 const PairChart = () => {
-  const [
-    { chardDateRange, chartAverageHours, isLoadingChart, chartHourlyData },
-  ] = useContext(PairStatsContext);
+  const [{ avgFilterSelected, isLoadingChart, chartHourlyData }] = useContext(
+    PairStatsContext
+  );
 
   const chartLabels =
     chartHourlyData.length > 0
@@ -42,17 +43,13 @@ const PairChart = () => {
           return item.data;
         })
       : [];
-  // console.log(chartData, chartLabels);
-  // if (!chartData || !chartLabels) {
-  //   return <Spinner />;
-  // }
-
+  console.log(typeof avgFilterSelected);
   const data = {
     labels:
       isLoadingChart && chartLabels.length < 0 ? [] : chartLabels.reverse(),
     datasets: [
       {
-        label: `APR % (${chartAverageHours}hs average)`,
+        label: `APR % (${avgFilterSelected}hs average)`,
         lineTension: 0.03,
         backgroundColor: 'rgba(0,0,0,0)',
         borderColor: '#2E71F0',
@@ -78,7 +75,6 @@ const PairChart = () => {
   return (
     <Flex
       flexDirection={'column'}
-      // backgroundColor="bg.primary"
       border="1px solid"
       borderColor="border.decorative"
       borderRadius="lg"
@@ -124,9 +120,15 @@ const PairChart = () => {
             >
               <Text textStyle="body2Heavy">Annualized APR</Text>
             </Flex>
-            <Box>
-              <PeriodSelector />
-            </Box>
+            <PeriodSelector />
+            <Flex
+              ml={5}
+              pl={5}
+              borderLeft="2px solid"
+              borderColor="border.decorative"
+            >
+              <AverageFilter />
+            </Flex>
           </HStack>
           <Flex w="100%" maxW="100%" h="400px" px={5}>
             <Line data={data} width={1000} height={300} />

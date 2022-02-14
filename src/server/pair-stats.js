@@ -3,11 +3,9 @@ import GET_PAIR_HOUR_DATAS, {
   GET_PAIR_DAY_DATAS,
 } from 'server/graphql/queries/pair-stats';
 import {
-  getUnixDateInDaysFromNow,
   getUnixDateInHoursFromNow,
+  getCurrentUnixTimestamp,
 } from 'utils/dates';
-
-const getUnixTimestamp = () => Math.round(new Date().getTime() / 1000);
 
 export const getPairHourDatas = async ({ pairAddress, hoursFromNow }) => {
   try {
@@ -15,7 +13,7 @@ export const getPairHourDatas = async ({ pairAddress, hoursFromNow }) => {
       query: GET_PAIR_HOUR_DATAS,
       variables: {
         pairAddress,
-        nowUnixTimestamp: getUnixTimestamp(),
+        nowUnixTimestamp: getCurrentUnixTimestamp(),
         hourCount: hoursFromNow,
         startUnixTimestamp: getUnixDateInHoursFromNow(hoursFromNow),
         orderBy: 'hourStartUnix',
@@ -37,7 +35,7 @@ export const getPairDayDatas = async ({
       query: GET_PAIR_DAY_DATAS,
       variables: {
         pairAddress,
-        nowUnixTimestamp: getUnixTimestamp(),
+        nowUnixTimestamp: getCurrentUnixTimestamp(),
         dayCount: daysFromNow,
         startUnixTimestamp: getUnixDateInHoursFromNow(hoursFromNow),
         orderBy: 'date',

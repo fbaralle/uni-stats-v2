@@ -1,24 +1,23 @@
 import Head from 'next/head';
 import { checkAndRefreshStats } from 'server/refresh-stats';
 import PairStatsTemplate from 'templates/PairStatsTemplate';
+import { PairStatsProvider } from 'contexts/PairStatsContext';
 
-const UniStats = ({ pairs, pairStoredData }) => {
+const UniStats = () => {
   return (
     <div className="container">
       <Head>
         <title>Uniswap v2 Stats</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PairStatsTemplate />
+      <PairStatsProvider>
+        <PairStatsTemplate />
+      </PairStatsProvider>
     </div>
   );
 };
 
-export async function getServerSideProps(context) {
-  let pairs = {};
-  let pairHourData = {};
-  let pairStoredData = {};
-
+export async function getServerSideProps() {
   try {
     await checkAndRefreshStats();
   } catch (e) {
@@ -27,7 +26,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      pairs,
+      pairs: {},
     },
   };
 }
