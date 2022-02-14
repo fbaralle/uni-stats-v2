@@ -45,7 +45,6 @@ const AverageFilter = () => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'filter',
     onChange: onFilterChanges,
-    // defaultValue: avgFilterSelected,
     value: avgFilterSelected,
   });
 

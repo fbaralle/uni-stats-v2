@@ -106,27 +106,35 @@ const PairChart = () => {
         <VStack alignItems={'start'} w="100%">
           <HStack
             pb={4}
-            px={5}
+            px={4}
             mb={1}
             w="100%"
             borderBottom="1px solid"
             borderColor="border.decorative"
+            flexDirection={{ base: 'column', lg: 'row' }}
+            alignItems={{ base: 'start', lg: 'center' }}
           >
-            <Flex
-              mr={5}
-              pr={5}
-              borderRight="2px solid"
-              borderColor="border.decorative"
-            >
+            <Flex mr={{ base: 0, lg: 5 }} mb={{ base: 3, lg: 0 }}>
               <Text textStyle="body2Heavy">Annualized APR</Text>
             </Flex>
-            <PeriodSelector />
             <Flex
-              ml={5}
-              pl={5}
-              borderLeft="2px solid"
+              mb={{ base: 3, lg: 0 }}
+              mx={{ base: 0, lg: 5 }}
+              px={{ base: 0, lg: 5 }}
+              borderX={{ base: '', lg: '1px solid' }}
               borderColor="border.decorative"
             >
+              <PeriodSelector />
+            </Flex>
+            <Flex
+              ml={{ base: 0, lg: 5 }}
+              pl={{ base: 0, lg: 4 }}
+              alignItems={'center'}
+              justifyContent="center"
+            >
+              <Text fontSize={'sm'} textColor={'txt.muted'} mr={3}>
+                Average Stats Filter
+              </Text>
               <AverageFilter />
             </Flex>
           </HStack>
