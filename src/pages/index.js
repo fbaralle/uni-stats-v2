@@ -1,11 +1,6 @@
 import Head from 'next/head';
-import { Flex } from '@chakra-ui/react';
 import { checkAndRefreshStats } from 'server/refresh-stats';
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import PairInfo from 'components/PairInfo';
-import PairDailyStats from 'components/PairDailyStats';
-import PairChart from 'components/PairChart';
+import PairStatsTemplate from 'templates/PairStatsTemplate';
 
 const UniStats = ({ pairs, pairStoredData }) => {
   return (
@@ -14,19 +9,7 @@ const UniStats = ({ pairs, pairStoredData }) => {
         <title>Uniswap v2 Stats</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex
-        h="100vh"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        <Header />
-        <Layout>
-          <PairInfo />
-          <PairDailyStats />
-          <PairChart />
-        </Layout>
-      </Flex>
+      <PairStatsTemplate />
     </div>
   );
 };

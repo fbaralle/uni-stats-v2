@@ -32,7 +32,7 @@ const PairSelector = () => {
               <option key={pairId} value={pairId}>{`${label} - ${pairId.slice(
                 0,
                 6
-              )}...${pairId.slice(-5, -1)}`}</option>
+              )}...${pairId.slice(pairId.length - 5, pairId.length)}`}</option>
             );
           })}
         </Select>
