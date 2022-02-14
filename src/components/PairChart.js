@@ -43,7 +43,7 @@ const PairChart = () => {
           return item.data;
         })
       : [];
-  console.log(typeof avgFilterSelected);
+
   const data = {
     labels:
       isLoadingChart && chartLabels.length < 0 ? [] : chartLabels.reverse(),

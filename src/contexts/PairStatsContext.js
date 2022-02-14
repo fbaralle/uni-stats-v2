@@ -12,6 +12,9 @@ import PairStatsReducer, {
 import { mockDayDatas, pairHourDatasMock } from 'server/mock-hour-stats';
 import { getPairDayDatas, getPairHourDatas } from 'server/pair-stats';
 import { getPairs } from 'server/pairs';
+import { checkIsLastStatExpired } from 'utils/general';
+import { useStopwatch } from 'react-timer-hook';
+import { getCurrentMsTimestamp } from 'utils/dates';
 
 const {
   UPDATING_PAIR_INFO,
@@ -92,10 +95,9 @@ const getChartStats = async ({
 
 const PairStatsContext = createContext([defaultPairStats, {}]);
 const PairStatsConsumer = PairStatsContext.Consumer;
-const PairStatsProvider = ({ children, value: initialValue }) => {
+const PairStatsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(PairStatsReducer, {
     ...defaultPairStats,
-    ...initialValue,
   });
   const contextActions = useRef({
     updatePairInfo: (pairInfo) =>
@@ -115,6 +117,10 @@ const PairStatsProvider = ({ children, value: initialValue }) => {
         data: { avgFilterSelected: filter },
       });
     },
+  });
+
+  const { seconds, hours, isRunning, start, reset, pause } = useStopwatch({
+    autoStart: false,
   });
 
   useEffect(() => {
@@ -144,10 +150,30 @@ const PairStatsProvider = ({ children, value: initialValue }) => {
     }
   }, [state.selectedPair, state.chartDateRange]);
 
-  // saves last change to local state
+  // save last change to local state
   useEffect(() => {
     localStorage.setItem('state', JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    // check runs every minute
+    const checkPeriodElapsed = seconds % 60 === 0;
+
+    if (state.selectedPair) {
+      if (!isRunning) start();
+    } else {
+      pause();
+    }
+
+    if (state.selectedPair && isRunning && checkPeriodElapsed) {
+      const lastUpdated = state.dailyStatsUpdatedAtMs ?? 0;
+      const shouldUpdatePairStats = checkIsLastStatExpired(lastUpdated);
+      if (shouldUpdatePairStats) {
+        getPairDailyStats({ pairAddress: state.selectedPair, dispatch });
+        reset();
+      }
+    }
+  }, [state.selectedPair, seconds]);
 
   return (
     <PairStatsContext.Provider value={[state, contextActions.current]}>

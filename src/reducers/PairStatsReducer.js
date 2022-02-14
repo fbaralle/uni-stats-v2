@@ -1,3 +1,4 @@
+import { getCurrentMsTimestamp } from 'utils/dates';
 import {
   parseAPRChartData,
   parseDailyStats,
@@ -18,6 +19,7 @@ export const defaultPairStats = {
   dailyFeesChangeRate: '0.0',
   dailyAnnualizedAPR: '0.0',
   dailyAnnualizedAPRChangeRate: '0.0',
+  dailyStatsUpdatedAtMs: 0,
   pairData: {
     id: '',
     tokenSymbols: '',
@@ -112,6 +114,7 @@ const PairStatsReducer = (state, { type, data }) => {
         ...state,
         isLoadingPairDailyStats: false,
         ...dailyStats,
+        dailyStatsUpdatedAtMs: getCurrentMsTimestamp(),
       };
     case actions.UPDATE_AVG_FILTER:
       return {

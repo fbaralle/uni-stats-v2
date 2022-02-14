@@ -35,3 +35,14 @@ export const getUnixDateInHoursFromNow = (hoursFromNow) => {
   const timestamp = getCurrentMsTimestamp() - hoursFromNow * HOUR_IN_MS;
   return convertMsToUnix(timestamp);
 };
+
+export const formatMsToHumanDate = (unixTs) => {
+  return new Date(parseInt(unixTs)).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    year: 'numeric',
+  });
+};
