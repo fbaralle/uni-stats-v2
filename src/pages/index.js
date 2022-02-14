@@ -17,18 +17,4 @@ const UniStats = () => {
   );
 };
 
-export async function getServerSideProps() {
-  try {
-    await checkAndRefreshStats();
-  } catch (e) {
-    console.log('Failed initialisation', e);
-  }
-
-  return {
-    props: {
-      pairs: {},
-    },
-  };
-}
-
 export default UniStats;
