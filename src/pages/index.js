@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { checkAndRefreshStats } from 'server/refresh-stats';
 import PairStatsTemplate from 'templates/PairStatsTemplate';
 import { PairStatsProvider } from 'contexts/PairStatsContext';
 
