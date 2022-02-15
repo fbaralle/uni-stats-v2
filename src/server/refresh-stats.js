@@ -26,10 +26,7 @@ export const checkPairLastSavedSnapshot = async (
         hourStartUnix: { $lte: getCurrentUnixTimestamp() },
       }
     );
-    console.log('last items, before', Date().toLocaleString(), pairAddress, {
-      limit: hoursAmount,
-      hourStartUnix: { $lte: getCurrentUnixTimestamp() },
-    });
+
     const parsedData = getParsedDbData(pairsLastHourData);
     const hasValidStats =
       parsedData.length > 0 && parsedData[0].pairId === pairAddress;

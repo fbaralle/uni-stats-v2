@@ -91,6 +91,9 @@ const styles = {
       outline: 'none',
       boxShadow: 'none',
     },
+    '.commonSvg': {
+      filter: 'grayscale(50%)',
+    },
   },
 };
 

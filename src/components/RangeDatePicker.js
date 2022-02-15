@@ -11,7 +11,6 @@ const RangeDatePicker = () => {
   ] = useContext(PairStatsContext);
   const onDateChanges = (...params) => {
     if (params[0] && params[1]) {
-      console.log(params[0].getTime(), params[1].getTime());
       updateChartDateRange({
         from: params[0].getTime(),
         to: params[1].getTime(),

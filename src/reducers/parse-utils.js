@@ -86,7 +86,7 @@ export const parseDailyStats = (dailyStats, state) => {
   const dailyFeesChangeRate = getChangeRate(thisDayFees, lastDayFees);
   const thisDayLiquidity = thisDay[0].reserveUSD;
   const lastDayLiquidity = lastDay[0].reserveUSD;
-  console.log({ thisDayLiquidity, lastDayLiquidity });
+
   const dailyLiquitityChangeRate = getChangeRate(
     thisDayLiquidity,
     lastDayLiquidity

@@ -4,6 +4,12 @@ This app uses [The Graph service](https://thegraph.com/hosted-service/subgraph/u
 
 <img width="1378" alt="Screen Shot 2022-02-14 at 14 25 12" src="https://user-images.githubusercontent.com/62451142/153915055-e8934885-0d08-4347-b2b2-4dac4fb81eee.png">
 
+---
+
+## Live Demo
+
+App up and running, deployed to Vercel cloud, at [uni-stats-v2.vercel.app](https://uni-stats-v2.vercel.app)
+
 ## Install dependencies
 
 ```bash

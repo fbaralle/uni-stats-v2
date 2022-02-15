@@ -1,8 +1,17 @@
 import { useContext } from 'react';
-import { Skeleton, Text, Flex, Box, VStack, HStack } from '@chakra-ui/react';
+import {
+  Skeleton,
+  SkeletonCircle,
+  Text,
+  Flex,
+  Box,
+  VStack,
+  HStack,
+} from '@chakra-ui/react';
 import PairStatsContext from 'contexts/PairStatsContext';
 import PairSelector from 'components/PairSelector';
 import { roundDecimals } from 'utils/general';
+import CurrencyIcon from './CurrencyIcon';
 
 const PairInfo = () => {
   const [
@@ -16,6 +25,8 @@ const PairInfo = () => {
       selectedPair,
     },
   ] = useContext(PairStatsContext);
+
+  // const isLoadingPairInfo = true;
   return (
     <Flex
       flexDirection={{ base: 'column', sm: 'row' }}
@@ -36,14 +47,23 @@ const PairInfo = () => {
           ml={8}
           direction={{ base: 'column', sm: 'row' }}
         >
-          <Skeleton isLoaded={!isLoadingPairInfo}>
-            {pairData?.tokenSymbols && (
-              <Text
-                textStyle="title2Heavy"
-                mb={2}
-              >{`Pair ${pairData.tokenSymbols}`}</Text>
-            )}
-          </Skeleton>
+          <HStack justifyContent={'center'} mb={2}>
+            <Skeleton isLoaded={!isLoadingPairInfo}>
+              {pairData?.tokenSymbols && (
+                <Text
+                  textStyle="title2Heavy"
+                  mr={2}
+                >{`Pair ${pairData.tokenSymbols}`}</Text>
+              )}
+            </Skeleton>
+            <SkeletonCircle isLoaded={!isLoadingPairInfo} size="7">
+              {token0.symbol && <CurrencyIcon currency={token0.symbol} />}
+            </SkeletonCircle>
+            <SkeletonCircle isLoaded={!isLoadingPairInfo} size="7">
+              {token1.symbol && <CurrencyIcon currency={token1.symbol} />}
+            </SkeletonCircle>
+          </HStack>
+
           <HStack>
             <Skeleton isLoaded={!isLoadingPairInfo}>
               <Flex
@@ -56,7 +76,7 @@ const PairInfo = () => {
               >
                 <Text textStyle="body2">{`1 ${token0.symbol} = ${roundDecimals(
                   token1Price,
-                  token0.decimals
+                  token1.decimals
                 )} ${token1.symbol}`}</Text>
               </Flex>
             </Skeleton>
@@ -71,7 +91,7 @@ const PairInfo = () => {
               >
                 <Text textStyle="body2">{`1 ${token1.symbol} = ${roundDecimals(
                   token0Price,
-                  token1.decimals
+                  token0.decimals
                 )} ${token0.symbol}`}</Text>
               </Flex>
             </Skeleton>

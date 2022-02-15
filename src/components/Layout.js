@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 const Layout = ({ children, style }) => {
   return (
@@ -22,6 +23,7 @@ const Layout = ({ children, style }) => {
         {...style}
       >
         {children}
+        <Footer />
       </Flex>
     </Flex>
   );
