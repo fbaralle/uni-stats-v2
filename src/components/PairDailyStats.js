@@ -9,8 +9,7 @@ import {
 } from '@chakra-ui/react';
 import StatCard from 'components/StatCard';
 import PairStatsContext from 'contexts/PairStatsContext';
-import PairSelector from 'components/PairSelector';
-import { checkIsLastStatExpired, roundDecimals } from 'utils/general';
+import { checkIsLastStatExpired } from 'utils/general';
 import { formatCurrencyUSD, formatPercent } from 'utils/uniswap';
 import { formatMsToHumanDate } from 'utils/dates';
 

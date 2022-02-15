@@ -26,7 +26,6 @@ const PairInfo = () => {
     },
   ] = useContext(PairStatsContext);
 
-  // const isLoadingPairInfo = true;
   return (
     <Flex
       flexDirection={{ base: 'column', sm: 'row' }}
