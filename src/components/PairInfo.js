@@ -49,12 +49,9 @@ const PairInfo = () => {
         >
           <HStack justifyContent={'center'} mb={2}>
             <Skeleton isLoaded={!isLoadingPairInfo}>
-              {pairData?.tokenSymbols && (
-                <Text
-                  textStyle="title2Heavy"
-                  mr={2}
-                >{`Pair ${pairData.tokenSymbols}`}</Text>
-              )}
+              <Text textStyle="title2Heavy" mr={2}>{`Pair ${
+                pairData?.tokenSymbols ? pairData.tokenSymbols : ''
+              }`}</Text>
             </Skeleton>
             <SkeletonCircle isLoaded={!isLoadingPairInfo} size="7">
               {token0.symbol && <CurrencyIcon currency={token0.symbol} />}
