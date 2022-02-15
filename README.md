@@ -2,7 +2,7 @@
 
 This app uses [The Graph service](https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v2?selected=playground) to fetch data form [Uniswap V2](https://uniswap.org/blog/uniswap-v2) DEX and displays some market performance metrics from a set of listed pairs.
 
-<img width="1378" alt="Screen Shot 2022-02-14 at 14 25 12" src="https://user-images.githubusercontent.com/62451142/153915055-e8934885-0d08-4347-b2b2-4dac4fb81eee.png">
+<img width="1206" alt="Screen Shot 2022-02-15 at 02 45 29" src="https://user-images.githubusercontent.com/62451142/154000247-f03c4f5d-92b3-48e6-8cf1-2b918ff643e8.png">
 
 ---
 
