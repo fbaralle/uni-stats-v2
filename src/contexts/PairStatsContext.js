@@ -1,20 +1,12 @@
-import {
-  createContext,
-  useReducer,
-  useRef,
-  useContext,
-  useEffect,
-} from 'react';
+import { createContext, useReducer, useRef, useEffect } from 'react';
 import PairStatsReducer, {
   actions,
   defaultPairStats,
 } from 'reducers/PairStatsReducer';
-import { mockDayDatas, pairHourDatasMock } from 'server/mock-hour-stats';
 import { getPairDayDatas, getPairHourDatas } from 'server/pair-stats';
 import { getPairs } from 'server/pairs';
 import { checkIsLastStatExpired } from 'utils/general';
 import { useStopwatch } from 'react-timer-hook';
-import { getCurrentMsTimestamp } from 'utils/dates';
 
 const {
   UPDATING_PAIR_INFO,
