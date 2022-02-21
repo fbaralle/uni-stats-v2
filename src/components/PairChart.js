@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import PairStatsContext from 'contexts/PairStatsContext';
-import { HStack, VStack, Spinner, Box, Flex, Text } from '@chakra-ui/react';
+import { HStack, VStack, Spinner, Flex, Text } from '@chakra-ui/react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,20 +26,20 @@ ChartJS.register(
 );
 
 const PairChart = () => {
-  const [{ avgFilterSelected, isLoadingChart, chartHourlyData }] = useContext(
+  const [{ avgFilterSelected, isLoadingChart, chartFilteredData }] = useContext(
     PairStatsContext
   );
 
   const chartLabels =
-    chartHourlyData.length > 0
-      ? chartHourlyData.map((item) => {
+    chartFilteredData.length > 0
+      ? chartFilteredData.map((item) => {
           return item.label;
         })
       : [];
 
   const chartData =
-    chartHourlyData.length > 0
-      ? chartHourlyData.map((item) => {
+    chartFilteredData.length > 0
+      ? chartFilteredData.map((item) => {
           return item.data;
         })
       : [];

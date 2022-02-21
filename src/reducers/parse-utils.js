@@ -1,8 +1,10 @@
+import { HOUR_AVERAGE_LIMIT } from 'constants';
 import {
   getCurrentMsTimestamp,
   filterDataUnixPeriod,
   getMsDateInHoursFromNow,
 } from 'utils/dates';
+import { getAverageStatsByFilter } from 'utils/general';
 import {
   getPeriodFees,
   getPeriodVolume,
@@ -100,7 +102,7 @@ export const parseDailyStats = (dailyStats, state) => {
     lastDayLiquidity
   );
   const dailyAnnualizedAPRChangeRate = getChangeRate(thisDayAPR, lastDayAPR);
-  parseAPRChartData(dailyStats);
+
   return {
     dailyVolumeUSD: thisDayVolume,
     dailyVolumeChangeRate,
@@ -156,4 +158,11 @@ export const getAvgFilterOptions = (filter) => {
     default:
       return ['24', '12', '1'];
   }
+};
+
+export const getAvgFilteredChartData = (data, filter, periodHours) => {
+  if (periodHours <= HOUR_AVERAGE_LIMIT) {
+    return getAverageStatsByFilter(data, filter);
+  }
+  return data;
 };

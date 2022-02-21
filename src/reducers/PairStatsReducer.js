@@ -4,6 +4,7 @@ import {
   parseDailyStats,
   parsePairInfo,
   getAvgFilterOptions,
+  getAvgFilteredChartData,
 } from './parse-utils';
 
 export const defaultPairStats = {
@@ -43,10 +44,10 @@ export const defaultPairStats = {
     hoursFromNow: 24,
   },
   chartAverageHours: 1,
-  chartDailyData: [],
   chartHourlyData: [],
   averageFilterOptions: ['24', '12', '1'],
   avgFilterSelected: '1',
+  chartFilteredData: [],
 };
 
 export const actions = {
@@ -95,11 +96,19 @@ const PairStatsReducer = (state, { type, data }) => {
         avgFilterSelected: filterOptions[filterOptions.length - 1],
       };
     case actions.UPDATE_CHART_STATS:
+      const chartHourlyData = parseAPRChartData(
+        data.chartData,
+        data.snapshotPeriod
+      );
       return {
         ...state,
         isLoadingChart: false,
-        chartDailyData: [],
-        chartHourlyData: parseAPRChartData(data.chartData, data.snapshotPeriod),
+        chartHourlyData: chartHourlyData,
+        chartFilteredData: getAvgFilteredChartData(
+          chartHourlyData,
+          state.avgFilterSelected,
+          state.chartDateRange.hoursFromNow
+        ),
       };
     case actions.UPDATE_PAIR_INFO:
       const pairInfo = parsePairInfo(data, state);
@@ -120,6 +129,11 @@ const PairStatsReducer = (state, { type, data }) => {
       return {
         ...state,
         avgFilterSelected: data.avgFilterSelected,
+        chartFilteredData: getAvgFilteredChartData(
+          state.chartHourlyData,
+          data.avgFilterSelected,
+          state.chartDateRange.hoursFromNow
+        ),
       };
     default:
       return { ...state };

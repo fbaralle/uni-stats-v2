@@ -68,7 +68,6 @@ const getChartStats = async ({
         data: { chartData: pairHourDatas, snapshotPeriod: 'hour' },
       });
     } else {
-      console.log('getPairDayDatas', Math.floor(hoursFromNow / 24));
       const { pairDayDatas } = await getPairDayDatas({
         pairAddress,
         daysFromNow: parseInt(hoursFromNow / 24),

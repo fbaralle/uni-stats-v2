@@ -18,3 +18,5 @@ export const HOUR_IN_SECONDS = 3600;
 export const HOUR_IN_MS = HOUR_IN_SECONDS * 1000;
 export const YEAR_IN_HOURS = 24 * 365;
 export const YEAR_IN_DAYS = 365;
+export const WEEK_IN_HOURS = DAY_IN_HOURS * 7;
+export const HOUR_AVERAGE_LIMIT = WEEK_IN_HOURS;
